@@ -113,5 +113,5 @@ cd frontend && npm install && npm run dev
 │       │   ├── dashboard/      ← 4 componentes de dashboard
 │       │   └── ui/             ← 2 componentes base (Card, Skeleton)
 │       └── lib/                ← Tipos, utilidades, mock data, tests
-└── memory-bank/                ← (vacío — para documentación del agente)
+└── memory-bank/                ← (Completado por el agente)
 ```
