@@ -8,6 +8,13 @@
       "skillPath": "skills/accessibility/SKILL.md",
       "computedHash": "c668809f5df57feb87cc06f1bc37fb340d1d92e26bacb6edbeab9258d22e76a5"
     },
+    "javascript-testing-patterns": {
+      "source": "wshobson/agents",
+      "commit": "9c61ab243def98f72da12abd41cfcf5bcd91af9d",
+      "sourceType": "github",
+      "skillPath": "plugins/javascript-typescript/skills/javascript-testing-patterns/SKILL.md",
+      "computedHash": "df9a91c014dd91ee65d7008cd23929cbe4b9e2087d67cdb31ebd0ab3831134af"
+    },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
