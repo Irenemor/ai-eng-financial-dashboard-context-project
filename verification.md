@@ -21,10 +21,10 @@ Un **dashboard financiero interactivo** que visualiza métricas clave de ingreso
 | 9 | **Endpoints disponibles** | 9 endpoints en total: `/health`, `/api/metrics`, `/api/metrics/facets`, `/api/metrics/summary`, `/api/metrics/categories/top`, `/api/metrics/comparison`, `/api/metrics/alerts`, `/api/metrics/b2b`, `/api/metrics/b2c`. El frontend solo consume `/api/metrics` |
 | 10 | **Cálculos en frontend** | `computeKPIs()` y `computeMonthlyData()` en `financial-utils.ts` procesan los movimientos localmente |
 | 11 | **KPIs mostrados** | 4 tarjetas: Total Income, Total Outcome, Profit, Profit Margin |
-| 12 | **Gráficos mostrados** | 2 gráficos de líneas: "Income vs Outcome" mensual y "Profit Margin %" mensual |
+| 12 | **Gráficos mostrados** | 2 gráficos mensuales con navegación por teclado y tablas de datos desplegables |
 | 13 | **Componentes UI reutilizables** | `Card` y `Skeleton` (skeleton loader mientras carga) |
 | 14 | **Tests backend** | Pruebas con pytest + httpx.TestClient en `backend/tests/test_routes.py` |
-| 15 | **Tests frontend** | Tests unitarios con Vitest para `computeKPIs` y `computeMonthlyData` |
+| 15 | **Tests frontend** | Vitest comprueba los cálculos financieros y las alternativas tabulares de los gráficos |
 | 16 | **Debug habilitado** | Backend expone puerto `:5678` con `debugpy` para depuración remota |
 | 17 | **Hot-reload** | Backend con `--reload` de Uvicorn, frontend con Vite Dev Server. Ambos montan el código local como volumen Docker |
 | 18 | **Entry Points** | `index.html` → `main.tsx` (React DOM) → `App.tsx` (componente raíz) → llamada a API |
@@ -116,7 +116,7 @@ Raíz del proyecto/
 │       ├── main.tsx             ← Entry Point React
 │       ├── App.tsx              ← Componente raíz
 │       ├── components/
-│       │   ├── dashboard/      ← 5 componentes de dashboard
+│       │   ├── dashboard/      ← Componentes, tablas accesibles y pruebas
 │       │   └── ui/             ← 2 componentes base (Card, Skeleton)
 │       └── lib/                ← Tipos, utilidades, mock data, tests
 └── memory-bank/

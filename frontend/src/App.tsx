@@ -32,7 +32,8 @@ function App() {
         setMetrics(computeKPIs(movements));
         setMonthlyData(computeMonthlyData(movements));
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        console.error("Failed to load financial data:", error);
         setError(
           "No se pudo cargar la informacion financiera. Revisa la API de backend.",
         );
@@ -49,7 +50,7 @@ function App() {
           <DashboardHeader period="2024 - Full Year" />
 
           {error ? (
-            <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive-foreground">
+            <div role="alert" lang="es" className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive-foreground">
               {error}
             </div>
           ) : null}

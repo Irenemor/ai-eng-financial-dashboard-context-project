@@ -24,7 +24,7 @@ La API usa HTTP y JSON. Incluye rutas para movimientos, filtros, resúmenes, com
 
 ## 5. Usabilidad
 
-La interfaz muestra cuatro indicadores y dos gráficos mensuales. Tiene diseño adaptable, estados de carga y un mensaje de error.
+La interfaz muestra cuatro indicadores y dos gráficos mensuales con tablas de datos accesibles. Tiene diseño adaptable, estados de carga y un mensaje de error.
 
 ## 6. Estado actual
 
