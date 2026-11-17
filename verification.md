@@ -18,12 +18,12 @@ Un **dashboard financiero interactivo** que visualiza métricas clave de ingreso
 | 6 | **Datos** | **100% simulados** — el backend genera 360 movimientos mock con `random.seed(42)` para 12 meses |
 | 7 | **Conexión frontend → backend** | Vite tiene un **proxy reverso** configurado: cualquier ruta `/api` se redirige a `http://backend:8000` |
 | 8 | **Endpoint usado por el frontend** | Solo consume `GET /api/metrics` (lista completa de movimientos) |
-| 9 | **Endpoints disponibles (no consumidos desde frontend)** | 9 endpoints en total: `/health`, `/api/metrics`, `/api/metrics/facets`, `/api/metrics/summary`, `/api/metrics/categories/top`, `/api/metrics/comparison`, `/api/metrics/alerts`, `/api/metrics/b2b`, `/api/metrics/b2c` |
+| 9 | **Endpoints disponibles** | 9 endpoints en total: `/health`, `/api/metrics`, `/api/metrics/facets`, `/api/metrics/summary`, `/api/metrics/categories/top`, `/api/metrics/comparison`, `/api/metrics/alerts`, `/api/metrics/b2b`, `/api/metrics/b2c`. El frontend solo consume `/api/metrics` |
 | 10 | **Cálculos en frontend** | `computeKPIs()` y `computeMonthlyData()` en `financial-utils.ts` procesan los movimientos localmente |
 | 11 | **KPIs mostrados** | 4 tarjetas: Total Income, Total Outcome, Profit, Profit Margin |
 | 12 | **Gráficos mostrados** | 2 gráficos de líneas: "Income vs Outcome" mensual y "Profit Margin %" mensual |
 | 13 | **Componentes UI reutilizables** | `Card` y `Skeleton` (skeleton loader mientras carga) |
-| 14 | **Tests backend** | 12 tests con pytest + httpx.TestClient |
+| 14 | **Tests backend** | Pruebas con pytest + httpx.TestClient en `backend/tests/test_routes.py` |
 | 15 | **Tests frontend** | Tests unitarios con Vitest para `computeKPIs` y `computeMonthlyData` |
 | 16 | **Debug habilitado** | Backend expone puerto `:5678` con `debugpy` para depuración remota |
 | 17 | **Hot-reload** | Backend con `--reload` de Uvicorn, frontend con Vite Dev Server. Ambos montan el código local como volumen Docker |
@@ -86,11 +86,16 @@ cd frontend && npm install && npm run dev
 ## 📁 Mapa de Archivos del Proyecto
 
 ```
-/workspaces/ai-eng-financial-dashboard-context-project/
+Raíz del proyecto/
 ├── docker-compose.yml          ← Orquestación de servicios
 ├── AGENTS.md                   ← Guía para agentes de IA
 ├── README.md / README.es.md    ← Documentación del proyecto
 ├── verification.md             ← ESTE ARCHIVO
+├── Exploración-API.md          ← Exploración de la API
+├── notas-análisis.md           ← Análisis del proyecto
+├── .agents/
+│   └── rules/
+│       └── agent-rules.md      ← Reglas para los agentes
 ├── backend/
 │   ├── Dockerfile
 │   ├── requirements.txt
@@ -100,18 +105,27 @@ cd frontend && npm install && npm run dev
 │   │   └── routes.py           ← 9 endpoints + lógica de negocio
 │   └── tests/
 │       ├── conftest.py
-│       └── test_routes.py      ← 12 tests
+│       └── test_routes.py      ← Pruebas del backend
 ├── frontend/
 │   ├── Dockerfile
 │   ├── index.html              ← Entry Point HTML
 │   ├── vite.config.ts          ← Proxy /api + alias @
 │   ├── package.json            ← React 19, Vite 8, Tailwind 4, Recharts
+│   ├── specs/                  ← Planes y tipos de funcionalidades
 │   └── src/
 │       ├── main.tsx             ← Entry Point React
 │       ├── App.tsx              ← Componente raíz
 │       ├── components/
-│       │   ├── dashboard/      ← 4 componentes de dashboard
+│       │   ├── dashboard/      ← 5 componentes de dashboard
 │       │   └── ui/             ← 2 componentes base (Card, Skeleton)
 │       └── lib/                ← Tipos, utilidades, mock data, tests
-└── memory-bank/                ← (Completado por el agente)
+└── memory-bank/
+    ├── 0-memory-bank.md        ← Resumen general
+    ├── 1-overview.md           ← Propósito y características
+    ├── 2-stack-tecnologico.md  ← Tecnologías y herramientas
+    ├── 3-arquitectura.md       ← Componentes y flujo de datos
+    ├── 4-interoperabilidad.md ← Comunicación y API
+    ├── 5-usabilidad.md         ← Interfaz y experiencia de uso
+    ├── 6-estado-actual.md      ← Funcionalidad y limitaciones
+    └── ESTRUCTURA.txt          ← Estructura del banco de memoria
 ```
