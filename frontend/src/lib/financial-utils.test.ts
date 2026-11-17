@@ -4,6 +4,7 @@ import {
   computeKPIs,
   computeMonthlyData,
   formatCurrency,
+  formatMonthlyPeriod,
   formatPercent,
 } from "./financial-utils";
 import type { FinancialMovement } from "./financial-types";
@@ -100,6 +101,34 @@ describe("computeMonthlyData", () => {
       outcome: 0,
       profitPercent: 100,
     });
+  });
+
+  it("keeps ISO dates on the first day of a month in their calendar month", () => {
+    const movements: FinancialMovement[] = [
+      { ...sampleMovements[0], create_date: "2026-01-01" },
+      { ...sampleMovements[0], create_date: "2025-12-01" },
+    ];
+
+    expect(computeMonthlyData(movements).map((point) => point.month)).toEqual([
+      "Dec 2025",
+      "Jan 2026",
+    ]);
+  });
+});
+
+describe("formatMonthlyPeriod", () => {
+  it("uses the first and last months after chronological aggregation", () => {
+    const movements: FinancialMovement[] = [
+      { ...sampleMovements[0], create_date: "2026-01-08" },
+      { ...sampleMovements[0], create_date: "2025-12-03" },
+    ];
+
+    expect(formatMonthlyPeriod(computeMonthlyData(movements))).toBe("Dec 2025 - Jan 2026");
+  });
+
+  it("shows a single month and returns no period for an empty dataset", () => {
+    expect(formatMonthlyPeriod(computeMonthlyData([sampleMovements[0]]))).toBe("Jan 2024");
+    expect(formatMonthlyPeriod(computeMonthlyData([]))).toBeNull();
   });
 });
 

@@ -28,4 +28,4 @@ La interfaz muestra cuatro indicadores y dos gráficos mensuales con tablas de d
 
 ## 6. Estado actual
 
-Es una demostración sin base de datos ni autenticación. La configuración es para desarrollo. El encabezado muestra un período fijo que puede no coincidir con los datos. No hay filtros en la interfaz ni reintentos de la petición inicial.
+Es una demostración sin base de datos ni autenticación. La configuración es para desarrollo. El período mostrado se deriva de los datos. No hay filtros en la interfaz ni reintentos de la petición inicial.

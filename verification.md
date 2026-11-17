@@ -24,10 +24,10 @@ Un **dashboard financiero interactivo** que visualiza métricas clave de ingreso
 | 12 | **Gráficos mostrados** | 2 gráficos mensuales con navegación por teclado y tablas de datos desplegables |
 | 13 | **Componentes UI reutilizables** | `Card` y `Skeleton` (skeleton loader mientras carga) |
 | 14 | **Tests backend** | Pruebas con pytest + httpx.TestClient en `backend/tests/test_routes.py` |
-| 15 | **Tests frontend** | Vitest comprueba los cálculos financieros y las alternativas tabulares de los gráficos |
+| 15 | **Tests frontend** | Vitest comprueba la petición de datos, los cálculos financieros y las alternativas tabulares de los gráficos |
 | 16 | **Debug habilitado** | Backend expone puerto `:5678` con `debugpy` para depuración remota |
 | 17 | **Hot-reload** | Backend con `--reload` de Uvicorn, frontend con Vite Dev Server. Ambos montan el código local como volumen Docker |
-| 18 | **Entry Points** | `index.html` → `main.tsx` (React DOM) → `App.tsx` (componente raíz) → llamada a API |
+| 18 | **Entry Points** | `index.html` → `main.tsx`, que inicia la petición y monta `App.tsx` |
 | 19 | **Sin base de datos** | No hay DB, ni ORM, ni persistencia — todo es volátil en memoria |
 | 20 | **Sin autenticación** | CORS permite `allow_origins=["*"]`, no hay login, sesiones ni API keys |
 
@@ -46,10 +46,10 @@ Un **dashboard financiero interactivo** que visualiza métricas clave de ingreso
        ▼
 3. Frontend: vite dev server (puerto 5173)
    - Sirve index.html
-   - Carga main.tsx → monta App.tsx
+   - Carga main.tsx → inicia la petición y monta App.tsx
        │
        ▼
-4. App.tsx hace fetch a /api/metrics
+4. financial-api.ts solicita /api/metrics
        │
        ▼
 5. Vite proxy redirige a http://backend:8000/api/metrics

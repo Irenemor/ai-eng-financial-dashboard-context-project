@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+import { ProfitPercentChartLoading } from '@/components/dashboard/chart-loading'
 import { ChartDataTable } from '@/components/dashboard/chart-data-table'
 import { type MonthlyDataPoint } from '@/lib/financial-types'
 import {
@@ -57,17 +57,7 @@ export function ProfitPercentChart({ data, loading }: ProfitPercentChartProps) {
   const instructionsId = useId()
 
   if (loading) {
-    return (
-      <Card className="border-border/60">
-        <CardHeader className="pb-4">
-          <Skeleton className="h-5 w-52" />
-          <Skeleton className="h-3 w-64 mt-1" />
-        </CardHeader>
-        <CardContent>
-          <Skeleton className="h-[280px] w-full rounded-lg" />
-        </CardContent>
-      </Card>
-    )
+    return <ProfitPercentChartLoading />
   }
 
   const hasData = data.length > 0
